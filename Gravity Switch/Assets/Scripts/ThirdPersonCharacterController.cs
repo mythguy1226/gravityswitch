@@ -8,7 +8,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     public float speed = 20.0f;
     Rigidbody playerBody;
     public float jumpSpeed = 40.0f;
-    bool canJump;
+    public static bool canJump;
 
     // Init
     private void Start()
@@ -38,7 +38,15 @@ public class ThirdPersonCharacterController : MonoBehaviour
         // Implementation for Jumping
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            playerBody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+            // Condition for which direction to jump
+            if(Gravity_Switch.normalGravity) // Jump Up
+            {
+                playerBody.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+            }
+            else // Jump Down
+            {
+                playerBody.AddForce(new Vector3(0, -jumpSpeed, 0), ForceMode.Impulse);
+            }
             canJump = false;
         }
     }
