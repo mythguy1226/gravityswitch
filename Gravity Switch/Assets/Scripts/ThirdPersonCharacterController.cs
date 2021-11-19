@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThirdPersonCharacterController : MonoBehaviour
 {
     // Fields needed for player functionality
-    public float speed = 20.0f;
+    public float speed = 10.0f;
     Rigidbody playerBody;
     public float jumpSpeed = 40.0f;
     public static bool canJump;
@@ -48,6 +48,12 @@ public class ThirdPersonCharacterController : MonoBehaviour
                 playerBody.AddForce(new Vector3(0, -jumpSpeed, 0), ForceMode.Impulse);
             }
             canJump = false;
+        }
+
+        // Allows Player to Quit Game
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 

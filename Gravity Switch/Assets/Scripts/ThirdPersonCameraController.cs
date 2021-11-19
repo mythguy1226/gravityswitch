@@ -11,6 +11,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     float mouseX;
     float mouseY;
 
+    // Awake Method runs as the program begins
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     // Update Method 
     void Update()
     {
