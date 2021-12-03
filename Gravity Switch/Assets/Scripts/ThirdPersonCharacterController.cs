@@ -33,7 +33,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
         // Store user input as a movement vector and then move the player
         Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        playerBody.MovePosition(transform.position + transform.TransformDirection(m_Input) * Time.deltaTime * speed);
+        playerBody.MovePosition(transform.position + Vector3.Normalize(transform.TransformDirection(m_Input)) * Time.deltaTime * speed);
 
         // Implementation for Jumping
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
