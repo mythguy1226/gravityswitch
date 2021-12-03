@@ -37,6 +37,7 @@ public class Gravity_Switch : MonoBehaviour
                 Physics.gravity = new Vector3(0, -9.8F, 0);
                 normalGravity = true;
             }
+            ThirdPersonCharacterController.canJump = false;
         }
 
         /*
