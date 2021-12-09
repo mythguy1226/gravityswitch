@@ -12,6 +12,10 @@ public class Gravity_Switch : MonoBehaviour
     // Bool will be used to determine whether gravity switch is on/off
     public bool gravitySwitch;
 
+    public float flipped = 1.0f ;
+
+    float smooth = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +31,7 @@ public class Gravity_Switch : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C) && ThirdPersonCharacterController.canJump)
         {
             // Send Player Upwards
-            if(normalGravity)
+            if (normalGravity)
             {
                 Physics.gravity = new Vector3(0, 9.8F, 0);
                 normalGravity = false;
@@ -39,6 +43,12 @@ public class Gravity_Switch : MonoBehaviour
             }
             ThirdPersonCharacterController.canJump = false;
         }
+        if(transform.rotation.z != 0)Debug.Log(transform.rotation.z);
+
+        Quaternion target;
+        if (normalGravity) target = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+        else target = new Quaternion(0, transform.rotation.y, 180.0f, transform.rotation.w);
+        transform.rotation = target;
 
         /*
         // Will run if Q key is presed and gravity switch is off
