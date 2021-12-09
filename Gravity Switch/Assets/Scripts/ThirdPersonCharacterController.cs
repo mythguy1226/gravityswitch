@@ -67,4 +67,24 @@ public class ThirdPersonCharacterController : MonoBehaviour
             canJump = true;
         }
     }
+
+    void OnGUI()
+    {
+        // Declare Text Style and Button Style
+        GUIStyle style = new GUIStyle();
+
+        // Set Style Rules
+        style.fontSize = 60;
+        style.normal.textColor = Color.yellow;
+
+        // Place the Gravity Status
+        if(Gravity_Switch.normalGravity) // Downwards
+        {
+            GUI.Label(new Rect(25, 20, 200, 150), "Gravity: Down", style);
+        }
+        else // Upwards
+        {
+            GUI.Label(new Rect(25, 20, 200, 150), "Gravity: Up", style);
+        }
+    }
 }
