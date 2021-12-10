@@ -8,7 +8,13 @@ public class GameManager : MonoBehaviour
     // Init fields
     public GameObject player;
     public bool normalGravity = Gravity_Switch.normalGravity;
-
+    //public AudioSource audioSource;
+/*
+    private void Start()
+    {
+        audioSource.Play();
+    }
+*/
     // Update is called once per frame
     void Update()
     {
