@@ -16,10 +16,13 @@ public class Gravity_Switch : MonoBehaviour
 
     float smooth = 5.0f;
 
+    GameObject model;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody>();
+        model = transform.GetChild(1).gameObject;
         gravitySwitch = false;
         normalGravity = true;
     }
@@ -45,10 +48,20 @@ public class Gravity_Switch : MonoBehaviour
         }
         if(transform.rotation.z != 0)Debug.Log(transform.rotation.z);
 
-        Quaternion target;
-        if (normalGravity) target = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-        else target = new Quaternion(0, transform.rotation.y, 180.0f, transform.rotation.w);
-        transform.rotation = target;
+        Quaternion targetRotate;
+        Vector3 targetHeight;
+        if (normalGravity)
+        {
+            targetRotate = new Quaternion(0, model.transform.rotation.y, 0, model.transform.rotation.w);
+            targetHeight = new Vector3(model.transform.position.x, transform.position.y - 1, model.transform.position.z);
+        }
+        else
+        {
+            targetRotate = new Quaternion(0, model.transform.rotation.y, 180.0f, model.transform.rotation.w);
+            targetHeight = new Vector3(model.transform.position.x, transform.position.y + 1, model.transform.position.z);
+        }
+        model.transform.rotation = targetRotate;
+        model.transform.position = targetHeight;
 
         /*
         // Will run if Q key is presed and gravity switch is off
