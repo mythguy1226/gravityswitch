@@ -46,23 +46,22 @@ public class Gravity_Switch : MonoBehaviour
             }
             ThirdPersonCharacterController.canJump = false;
         }
-        if(transform.rotation.z != 0)Debug.Log(transform.rotation.z);
 
         Quaternion targetRotate;
         Vector3 targetHeight;
         if (normalGravity)
         {
-            targetRotate = new Quaternion(0, model.transform.rotation.y, 0, model.transform.rotation.w);
+            targetRotate = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);
             targetHeight = new Vector3(model.transform.position.x, transform.position.y - 1, model.transform.position.z);
         }
         else
         {
-            targetRotate = new Quaternion(0, model.transform.rotation.y, 180.0f, model.transform.rotation.w);
+            targetRotate = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 180);
             targetHeight = new Vector3(model.transform.position.x, transform.position.y + 1, model.transform.position.z);
         }
         model.transform.rotation = targetRotate;
         model.transform.position = targetHeight;
-
+        Debug.Log(player.transform.rotation.y);
         /*
         // Will run if Q key is presed and gravity switch is off
         if(Input.GetKeyDown(KeyCode.Q) )//&& gravitySwitch == false)
